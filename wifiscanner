@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+import iwlist
+
+content = iwlist.scan(interface='wlp2s0')
+cells = iwlist.parse(content)
+print 'ssid', 'level', 'mac', 'freq'
+for cell in cells:
+    ssid = cell['essid']
+    level = cell['signal_level']
+    mac = cell['mac']
+    freq = cell['frequency']
+    if ssid in ['ServientBackup', 'ServientRadio']:
+        print ssid, level, mac, freq
